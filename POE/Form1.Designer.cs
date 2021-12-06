@@ -76,6 +76,7 @@ namespace POE
             this.leftbtn.TabIndex = 8;
             this.leftbtn.Text = "LEFT";
             this.leftbtn.UseVisualStyleBackColor = true;
+            this.leftbtn.Click += new System.EventHandler(this.leftbtn_Click);
             // 
             // rightbtn
             // 
@@ -85,6 +86,7 @@ namespace POE
             this.rightbtn.TabIndex = 9;
             this.rightbtn.Text = "RIGHT";
             this.rightbtn.UseVisualStyleBackColor = true;
+            this.rightbtn.Click += new System.EventHandler(this.rightbtn_Click);
             // 
             // downbtn
             // 
@@ -94,6 +96,7 @@ namespace POE
             this.downbtn.TabIndex = 10;
             this.downbtn.Text = "DOWN";
             this.downbtn.UseVisualStyleBackColor = true;
+            this.downbtn.Click += new System.EventHandler(this.downbtn_Click);
             // 
             // upbtn
             // 

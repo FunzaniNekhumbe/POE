@@ -54,13 +54,13 @@ namespace POE
             public int X
             {
                 get { return x; }
-                set { }
+                set { x = value; }
             }
 
             public int Y
             {
                 get { return y; }
-                set { }
+                set { y = value; }
             }
         }
 
@@ -398,16 +398,16 @@ namespace POE
                 switch (move)
                 {
                     case Movement.Up:
-                        X--;
+                        this.X--;
                         break;
                     case Movement.Down:
-                        X++;
+                        this.X++;
                         break;
                     case Movement.Left:
-                        Y--;
+                        this.Y--;
                         break;
                     case Movement.Right:
-                        Y++;
+                        this.Y++;
                         break;
                 }
 
@@ -887,10 +887,12 @@ namespace POE
             {
                 int x = PLAYER.X;
                 int y = PLAYER.Y;
-
+                
                 PLAYER.Move(PLAYER.ReturnMove(controls));
-                mapcontainer[x, y] = new EmptyTile(x, y);
                 mapcontainer[PLAYER.X, PLAYER.Y] = PLAYER;
+                mapcontainer[x, y] = new EmptyTile(x, y);
+               
+                
             }
         }
         //Question 3.3//
@@ -977,14 +979,15 @@ namespace POE
 
         private void upbtn_Click(object sender, EventArgs e)
         {
-            gameEngine.MovePlayer(Character.Movement.Up);
-            label1.Text = gameEngine.MAP.ToString();
+            //gameEngine.MovePlayer(Character.Movement.Up);
+            //label1.Text = gameEngine.MAP.ToString();
         }
 
         private void upbtn_Click_1(object sender, EventArgs e)
         {
             
             gameEngine.MovePlayer(Character.Movement.Up);
+            
             label1.Text = gameEngine.MAP.ToString();
 
         }
@@ -992,6 +995,27 @@ namespace POE
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void downbtn_Click(object sender, EventArgs e)
+        {
+            gameEngine.MovePlayer(Character.Movement.Down);
+
+            label1.Text = gameEngine.MAP.ToString();
+        }
+
+        private void leftbtn_Click(object sender, EventArgs e)
+        {
+            gameEngine.MovePlayer(Character.Movement.Left);
+
+            label1.Text = gameEngine.MAP.ToString();
+        }
+
+        private void rightbtn_Click(object sender, EventArgs e)
+        {
+            gameEngine.MovePlayer(Character.Movement.Right);
+
+            label1.Text = gameEngine.MAP.ToString();
         }
     }
 } 
