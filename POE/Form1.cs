@@ -703,6 +703,7 @@ namespace POE
 
                 ENEMIES = new List<Enemy>();
                 ITEMS = new List<Item>();
+                //POE Question 3.1//
                 enemyNum = NUMBEROFENEMIES;
                 GenerateInitialMap(Weaponsmap,Goldmap);
 
@@ -823,7 +824,8 @@ namespace POE
                         ITEMS.Add(one);
                         break;
                     case Character.TileType.Weapon:
-                        
+
+                        //POE Question 3.1//
                         int u = random.Next(4);
                         if (u == 1)
                         {
