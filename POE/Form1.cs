@@ -135,8 +135,8 @@ namespace POE
                 set { cost = value; }
             }
 
-            protected int weapontype;
-            public int WEAPONTYPE
+            protected string weapontype;
+            public string WEAPONTYPE
             {
                 get { return weapontype; }
                 set { weapontype = value; }
@@ -412,6 +412,21 @@ namespace POE
                 }
             }
 
+            // POE Question 2.5//
+            public void PickUp(Item playeritem)
+            {
+                if (playeritem is Gold)
+                {
+                    Gold newgold = (Gold)playeritem;
+                    this.goldpurse += newgold.GOLD;
+                }
+                else if(playeritem is Weapon)
+                {
+                    Weapon newweapon = (Weapon)playeritem;
+                    this.GAMEWEAPON = newweapon;
+                }
+            }
+
         }
 
         //Question 2.4//
@@ -551,6 +566,35 @@ namespace POE
                 }
             }
 
+            public bool CanBuy(int buy)
+            {
+                if (GAMECHARACTER.GOLDPURSE <= WEAPONSELECTION[buy].COST)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+               
+            }
+
+            public void Buy(int decrease)
+            {
+                GAMECHARACTER.GOLDPURSE -= WEAPONSELECTION[decrease].COST;
+
+                GAMECHARACTER.PickUp(WEAPONSELECTION[decrease]);
+
+                WEAPONSELECTION[decrease] = RandomWeapon();
+            }
+
+            public string DisplayWeapon(int displayweapons)
+            {
+                string displayshop = "";
+                displayshop += WEAPONSELECTION[displayweapons].NAME + " cost:"+ Convert.ToString(WEAPONSELECTION[displayweapons].COST);
+                return displayshop;
+            }
+
         }
 
         //Question 2.6//
@@ -573,6 +617,8 @@ namespace POE
                 info += "[" + X.ToString() + "," + Y.ToString() + "]";
                 return info;
             }
+
+            
             //bool CheckForValidMove(Movement CharacterMove)
             //{
 
