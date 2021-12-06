@@ -499,26 +499,25 @@ namespace POE
                 return false;
             }
 
-            //POE Question 2.4//
-            public class Leader : Enemy
-            {
-
-
-
-
-                public Leader(int X, int Y) : base(X, Y, 2, 20, 20, "L")
-                {
-                    this.GOLDPURSE = 2;
-                    this.GameWeapon = new MeleeWeapon(x, y, MeleeWeapon.Types.Longsword);
-                }
-
-                public override Movement ReturnMove(Movement move)
-                {
-                    return Movement.NoMovement;
-                }
-            }
+         
         }
 
+        //POE Question 2.4//
+        public class Leader : Enemy
+        {
+
+
+            public Leader(int X, int Y) : base(X, Y, 2, 20, 20, "L")
+            {
+                this.GOLDPURSE = 2;
+                this.GameWeapon = new MeleeWeapon(x, y, MeleeWeapon.Types.Longsword);
+            }
+
+            public override Movement ReturnMove(Movement move)
+            {
+                return Movement.NoMovement;
+            }
+        }
         //POE Question 2.5//
 
         public class Shop
@@ -780,9 +779,15 @@ namespace POE
                             MAPCONTAINER[X, Y] = NewEnemy;
                             ENEMIES.Add(NewEnemy);
                         }
-                        else
+                        else if (k == 2)
                         {
                             Mage NewEnemy = new Mage(X, Y);
+                            MAPCONTAINER[X, Y] = NewEnemy;
+                            ENEMIES.Add(NewEnemy);
+                        }
+                        else
+                        {
+                            Leader NewEnemy = new Leader(X, Y);
                             MAPCONTAINER[X, Y] = NewEnemy;
                             ENEMIES.Add(NewEnemy);
                         }
