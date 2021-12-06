@@ -194,7 +194,7 @@ namespace POE
                         this.DAMAGE = 4;
                         this.COST = 5;
 
-                        this.SYMBOL = "D";
+                        this.SYMBOL = "S";
                         this.NAME = "LongSword";
                         break;
 
@@ -238,7 +238,7 @@ namespace POE
                         this.DAMAGE = 4;
                         this.COST = 6;
                         this.range = 2;
-                        this.SYMBOL = "R";
+                        this.SYMBOL = "B";
                         this.NAME = "Longbow";
                         break;
                 }
@@ -702,6 +702,7 @@ namespace POE
                 MAPCONTAINER = new Tile[MAPWIDTH, MAPHEIGHT];
 
                 ENEMIES = new List<Enemy>();
+                ITEMS = new List<Item>();
                 enemyNum = NUMBEROFENEMIES;
                 GenerateInitialMap(Weaponsmap,Goldmap);
 
@@ -819,38 +820,38 @@ namespace POE
                         case Character.TileType.Gold:
                         Gold one = new Gold(X, Y);
                         MAPCONTAINER[X, Y] = one;
-                        ITEMS.Add((Gold)mapcontainer[X, Y]);
+                        ITEMS.Add(one);
                         break;
                     case Character.TileType.Weapon:
                         
-                        int u = random.Next(2);
+                        int u = random.Next(4);
                         if (u == 1)
                         {
                             MeleeWeapon NewWeapon = new MeleeWeapon(X, Y, MeleeWeapon.Types.Dagger);
                             MAPCONTAINER[X, Y] = NewWeapon;
                             ITEMS.Add(NewWeapon);
-                            ITEMS.Add((MeleeWeapon)mapcontainer[X, Y]);
+                            
                         }
                         else if (u == 2)
                         {
                             MeleeWeapon NewWeapon = new MeleeWeapon(X, Y, MeleeWeapon.Types.Longsword);
                             MAPCONTAINER[X, Y] = NewWeapon;
                             ITEMS.Add(NewWeapon);
-                            ITEMS.Add((MeleeWeapon)mapcontainer[X, Y]);
+                           
                         }
                         else if (u == 3)
                         {
                             RangedWeapon NewWeapon = new RangedWeapon(X, Y, RangedWeapon.Types.Rifle);
                             MAPCONTAINER[X, Y] = NewWeapon;
                             ITEMS.Add(NewWeapon);
-                            ITEMS.Add((RangedWeapon)mapcontainer[X, Y]);
+                            
                         }
                         else
                         {
                             RangedWeapon NewWeapon = new RangedWeapon(X, Y, RangedWeapon.Types.Longbow);
                             MAPCONTAINER[X, Y] = NewWeapon;
                             ITEMS.Add(NewWeapon);
-                            ITEMS.Add((RangedWeapon)mapcontainer[X, Y]);
+                            
                         }
                         
                         break;
