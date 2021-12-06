@@ -410,9 +410,18 @@ namespace POE
                         Y++;
                         break;
                 }
+
+                
+            }
+
+            //POE Question 3.2//
+            private void Equip(Weapon equiped)
+            {
+                this.GAMEWEAPON = equiped;
             }
 
             // POE Question 2.5//
+            // POE Question 3.1 and 3.2
             public void PickUp(Item playeritem)
             {
                 if (playeritem is Gold)
@@ -423,8 +432,14 @@ namespace POE
                 else if(playeritem is Weapon)
                 {
                     Weapon newweapon = (Weapon)playeritem;
-                    this.GAMEWEAPON = newweapon;
+                    Equip(newweapon);
                 }
+            }
+
+            //POE Question 3.4
+            public void Loot(Enemy opp)
+            {
+                GOLDPURSE += opp.GOLDPURSE;
             }
 
         }
@@ -511,6 +526,7 @@ namespace POE
             {
                 this.GOLDPURSE = 2;
                 this.GameWeapon = new MeleeWeapon(x, y, MeleeWeapon.Types.Longsword);
+
             }
 
             public override Movement ReturnMove(Movement move)
