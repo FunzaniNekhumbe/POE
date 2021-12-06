@@ -93,7 +93,7 @@ namespace POE
         //Task 2 Question 2.2//
         public class Gold : Item
         {
-            public Gold(int X, int Y) : base(X, Y, "D")
+            public Gold(int X, int Y) : base(X, Y, "J")
             {
                 gold = random.Next(1, 6);
             }
@@ -633,7 +633,7 @@ namespace POE
             {
                 if(CharacterMove == Movement.Up)
                 {
-                    if(!(this.VISION[0]is Character))
+                    if((!(this.VISION[0]is Character)) && (!(this.VISION[0]is Obstacle)))
                     {
                         return Movement.Up;
                     }
@@ -641,7 +641,7 @@ namespace POE
                 }
                 if (CharacterMove == Movement.Down)
                 {
-                    if (!(this.VISION[1] is Character))
+                    if ((!(this.VISION[1] is Character)) && (!(this.VISION[1] is Obstacle)))
                     {
                         return Movement.Down;
                     }
@@ -649,7 +649,7 @@ namespace POE
 
                 if (CharacterMove == Movement.Left)
                 {
-                    if (!(this.VISION[2] is Character))
+                    if ((!(this.VISION[2] is Character)) && (!(this.VISION[2] is Obstacle)))
                     {
                         return Movement.Left;
                     }
@@ -657,7 +657,7 @@ namespace POE
 
                 if (CharacterMove == Movement.Right)
                 {
-                    if (!(this.VISION[3] is Character))
+                    if ((!(this.VISION[3] is Character)) && (!(this.VISION[3] is Obstacle)))
                     {
                         return Movement.Right;
                     }
