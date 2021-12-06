@@ -692,6 +692,11 @@ namespace POE
         {
             private int enemyNum;
             private Hero PLAYER;
+            
+            public Hero GetHero()
+            {
+                return PLAYER;
+            }
 
             private Tile[,] mapcontainer;
             public Tile[,] MAPCONTAINER
@@ -942,6 +947,8 @@ namespace POE
                 set { map = value; }
             }
 
+            public Shop gameshop;
+
             public Item getItemAtPosition(int X, int Y)
             {
                 for (int item = 0; item < map.ITEMS.Count; item++)
@@ -962,11 +969,13 @@ namespace POE
             public GameEngine()
             {
                 map = new Map(10, 20, 10, 20, 5, 4, 5);
+                 gameshop = new Shop((Character)map.MAPCONTAINER[map.GetHero().X, map.GetHero().Y]);
             }
 
             public void MovePlayer(Character.Movement controls)
             {
                 MAP.TryMove(controls);
+                
             }
 
             //public class SaveGame
@@ -1022,7 +1031,7 @@ namespace POE
         {
             
             gameEngine.MovePlayer(Character.Movement.Up);
-            
+            UpdateShop();
             label1.Text = gameEngine.MAP.ToString();
 
         }
@@ -1035,22 +1044,58 @@ namespace POE
         private void downbtn_Click(object sender, EventArgs e)
         {
             gameEngine.MovePlayer(Character.Movement.Down);
-
+            UpdateShop();
             label1.Text = gameEngine.MAP.ToString();
         }
 
         private void leftbtn_Click(object sender, EventArgs e)
         {
             gameEngine.MovePlayer(Character.Movement.Left);
-
+            UpdateShop();
             label1.Text = gameEngine.MAP.ToString();
         }
 
         private void rightbtn_Click(object sender, EventArgs e)
         {
             gameEngine.MovePlayer(Character.Movement.Right);
-
+            UpdateShop();
             label1.Text = gameEngine.MAP.ToString();
+        }
+
+        public void UpdateShop()
+        {
+            label2.Text = gameEngine.gameshop.DisplayWeapon(0);
+            label3.Text = gameEngine.gameshop.DisplayWeapon(1);
+            label4.Text = gameEngine.gameshop.DisplayWeapon(2);
+            if (gameEngine.gameshop.CanBuy(0))
+            {
+                btnbuy.Enabled = true;
+            }
+            else
+            {
+                btnbuy.Enabled = false;
+            }
+            if (gameEngine.gameshop.CanBuy(1))
+            {
+                button1.Enabled = true;
+            }
+            else
+            {
+                button1.Enabled = false;
+            }
+            if (gameEngine.gameshop.CanBuy(2))
+            {
+                button2.Enabled = true;
+            }
+            else
+            {
+                button2.Enabled = false;
+            }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 } 
