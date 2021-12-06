@@ -697,6 +697,7 @@ namespace POE
         //Question 3.1//
         public class Map
         {
+            //I have no idea how to fix this error//
             private int enemyNum;
             public Hero PLAYER;
             
