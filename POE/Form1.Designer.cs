@@ -37,6 +37,7 @@ namespace POE
             this.downbtn = new System.Windows.Forms.Button();
             this.upbtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnbuy = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // radioButton1
@@ -102,6 +103,7 @@ namespace POE
             this.upbtn.TabIndex = 7;
             this.upbtn.Text = "UP";
             this.upbtn.UseVisualStyleBackColor = true;
+            this.upbtn.Click += new System.EventHandler(this.upbtn_Click_1);
             // 
             // label1
             // 
@@ -111,12 +113,23 @@ namespace POE
             this.label1.Size = new System.Drawing.Size(38, 15);
             this.label1.TabIndex = 6;
             this.label1.Text = "label1";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // btnbuy
+            // 
+            this.btnbuy.Location = new System.Drawing.Point(604, 683);
+            this.btnbuy.Name = "btnbuy";
+            this.btnbuy.Size = new System.Drawing.Size(75, 23);
+            this.btnbuy.TabIndex = 14;
+            this.btnbuy.Text = "Buy";
+            this.btnbuy.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1257, 768);
+            this.Controls.Add(this.btnbuy);
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.listBox1);
@@ -143,6 +156,7 @@ namespace POE
         private System.Windows.Forms.Button downbtn;
         private System.Windows.Forms.Button upbtn;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnbuy;
     }
 }
 

@@ -21,7 +21,7 @@ namespace POE
             label1.Text = gameEngine.MAP.ToString();
 
 
-            Console.ReadLine();
+            
 
         }
 
@@ -440,6 +440,13 @@ namespace POE
             public void Loot(Enemy opp)
             {
                 GOLDPURSE += opp.GOLDPURSE;
+                if ((this.GameWeapon == null) && !(this is Mage))
+                {
+                    if (opp.GameWeapon != null)
+                    {
+                        this.GameWeapon = opp.GameWeapon;
+                    }
+                }
             }
 
         }
@@ -488,6 +495,7 @@ namespace POE
         {
             public Mage(int X, int Y) : base(X, Y, 5, 10, 10, "M")
             {
+                this.GOLDPURSE = 3;
                 this.sight = new Tile[8];
             }
             public override Movement ReturnMove(Movement move)
@@ -882,7 +890,7 @@ namespace POE
 
                 PLAYER.Move(PLAYER.ReturnMove(controls));
                 mapcontainer[x, y] = new EmptyTile(x, y);
-                mapcontainer[PLAYER.X, PLAYER.Y] = PLAYER; ;
+                mapcontainer[PLAYER.X, PLAYER.Y] = PLAYER;
             }
         }
         //Question 3.3//
@@ -971,6 +979,19 @@ namespace POE
         {
             gameEngine.MovePlayer(Character.Movement.Up);
             label1.Text = gameEngine.MAP.ToString();
+        }
+
+        private void upbtn_Click_1(object sender, EventArgs e)
+        {
+            
+            gameEngine.MovePlayer(Character.Movement.Up);
+            label1.Text = gameEngine.MAP.ToString();
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 } 
