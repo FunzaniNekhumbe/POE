@@ -697,7 +697,7 @@ namespace POE
         //Question 3.1//
         public class Map
         {
-            //I have no idea how to fix this error//
+            //The game runs but I have no idea how to fix this error//
             private int enemyNum;
             public Hero PLAYER;
             
@@ -1103,6 +1103,7 @@ namespace POE
 
         private void label2_Click(object sender, EventArgs e)
         {
+
 
         }
     }
