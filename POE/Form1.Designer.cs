@@ -144,7 +144,7 @@ namespace POE
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(716, 618);
+            this.button1.Location = new System.Drawing.Point(716, 625);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 14;
@@ -154,7 +154,7 @@ namespace POE
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(828, 618);
+            this.label3.Location = new System.Drawing.Point(828, 625);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 15);
             this.label3.TabIndex = 15;
@@ -162,7 +162,7 @@ namespace POE
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(716, 571);
+            this.button2.Location = new System.Drawing.Point(716, 578);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 14;
@@ -172,7 +172,7 @@ namespace POE
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(828, 571);
+            this.label4.Location = new System.Drawing.Point(828, 578);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(38, 15);
             this.label4.TabIndex = 15;

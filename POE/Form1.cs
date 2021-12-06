@@ -18,8 +18,10 @@ namespace POE
         {
             InitializeComponent();
 
-            label1.Text = gameEngine.MAP.ToString();
 
+            
+            label1.Text = gameEngine.MAP.ToString();
+            UpdateShop();
 
             
 
@@ -568,6 +570,11 @@ namespace POE
             {
                 Weaponselection = new Weapon[3];
                 numbers = new Random();
+
+                for (int i = 0; i < 3; i++)
+                {
+                    WEAPONSELECTION[i] = RandomWeapon();
+                }
             }
 
             public Weapon RandomWeapon()
@@ -691,7 +698,7 @@ namespace POE
         public class Map
         {
             private int enemyNum;
-            private Hero PLAYER;
+            public Hero PLAYER;
             
             public Hero GetHero()
             {
@@ -969,7 +976,7 @@ namespace POE
             public GameEngine()
             {
                 map = new Map(10, 20, 10, 20, 5, 4, 5);
-                 gameshop = new Shop((Character)map.MAPCONTAINER[map.GetHero().X, map.GetHero().Y]);
+                 gameshop = new Shop((Character)MAP.MAPCONTAINER[MAP.GetHero().X, MAP.GetHero().Y]);
             }
 
             public void MovePlayer(Character.Movement controls)
