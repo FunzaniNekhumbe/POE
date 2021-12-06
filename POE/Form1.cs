@@ -335,11 +335,11 @@ namespace POE
 
             public void SetVision(Tile[,] Sight)
             {
-
-                this.VISION.Add(Sight[x - 1, y]);
-                this.VISION.Add(Sight[x + 1, y]);
-                this.VISION.Add(Sight[x, y - 1]);
-                this.VISION.Add(Sight[x, y + 1]);
+                this.VISION.Clear();
+                this.VISION.Add(Sight[this.X - 1, this.Y]);
+                this.VISION.Add(Sight[this.X + 1, this.Y]);
+                this.VISION.Add(Sight[this.X, this.Y - 1]);
+                this.VISION.Add(Sight[this.X, this.Y + 1]);
             }
 
             string[] Tilearray = { "North", "South", "East", "West" };
@@ -397,6 +397,7 @@ namespace POE
             {
                 switch (move)
                 {
+
                     case Movement.Up:
                         this.X--;
                         break;
@@ -409,6 +410,7 @@ namespace POE
                     case Movement.Right:
                         this.Y++;
                         break;
+
                 }
 
                 
@@ -629,7 +631,38 @@ namespace POE
             }
             public override Movement ReturnMove(Movement CharacterMove)
             {
-                return CharacterMove;
+                if(CharacterMove == Movement.Up)
+                {
+                    if(!(this.VISION[0]is Character))
+                    {
+                        return Movement.Up;
+                    }
+
+                }
+                if (CharacterMove == Movement.Down)
+                {
+                    if (!(this.VISION[1] is Character))
+                    {
+                        return Movement.Down;
+                    }
+                }
+
+                if (CharacterMove == Movement.Left)
+                {
+                    if (!(this.VISION[2] is Character))
+                    {
+                        return Movement.Left;
+                    }
+                }
+
+                if (CharacterMove == Movement.Right)
+                {
+                    if (!(this.VISION[3] is Character))
+                    {
+                        return Movement.Right;
+                    }
+                }
+                return Movement.NoMovement;
             }
 
             public override string ToString()
@@ -885,14 +918,16 @@ namespace POE
             }
             public void TryMove(Character.Movement controls)
             {
+                
                 int x = PLAYER.X;
                 int y = PLAYER.Y;
                 
                 PLAYER.Move(PLAYER.ReturnMove(controls));
-                mapcontainer[PLAYER.X, PLAYER.Y] = PLAYER;
                 mapcontainer[x, y] = new EmptyTile(x, y);
-               
+                mapcontainer[PLAYER.X, PLAYER.Y] = PLAYER;
                 
+                PLAYER.SetVision(MAPCONTAINER);
+
             }
         }
         //Question 3.3//
