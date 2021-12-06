@@ -694,7 +694,7 @@ namespace POE
 
             protected Random random = new Random();
 
-            public Map(int MINWIDTH, int MAXWIDTH, int MINHEIGHT, int MAXHEIGHT, int NUMBEROFENEMIES)
+            public Map(int MINWIDTH, int MAXWIDTH, int MINHEIGHT, int MAXHEIGHT, int NUMBEROFENEMIES, int Goldmap, int Weaponsmap)
             {
                 MAPWIDTH = random.Next(MINWIDTH, MAXWIDTH);
                 MAPHEIGHT = random.Next(MINHEIGHT, MAXHEIGHT);
@@ -703,7 +703,7 @@ namespace POE
 
                 ENEMIES = new List<Enemy>();
                 enemyNum = NUMBEROFENEMIES;
-                GenerateInitialMap();
+                GenerateInitialMap(Weaponsmap,Goldmap);
 
                 UpdateVision();
             }
@@ -727,7 +727,7 @@ namespace POE
 
 
 
-            void GenerateInitialMap()
+            void GenerateInitialMap(int Weaponmap, int Goldmap)
             {
                 for (int y = 0; y < MAPWIDTH; y++)
                 {
@@ -753,6 +753,29 @@ namespace POE
                         y = random.Next(mapheight - 1);
                     }
                     Create(Character.TileType.Enemy, x, y);
+                }
+
+                for (int g = 0; g < Goldmap; g++)
+                {
+                    int x = random.Next(mapwidth - 1);
+                    int y = random.Next(mapheight - 1);
+                    while (!(mapcontainer[x, y] is EmptyTile))
+                    {
+                        x = random.Next(mapwidth - 1);
+                        y = random.Next(mapheight - 1);
+                    }
+                    Create(Character.TileType.Gold, x, y);
+                }
+                for (int w = 0; w < Weaponmap; w++)
+                {
+                    int x = random.Next(mapwidth - 1);
+                    int y = random.Next(mapheight - 1);
+                    while (!(mapcontainer[x, y] is EmptyTile))
+                    {
+                        x = random.Next(mapwidth - 1);
+                        y = random.Next(mapheight - 1);
+                    }
+                    Create(Character.TileType.Weapon, x, y);
                 }
             }
 
@@ -792,6 +815,44 @@ namespace POE
                             ENEMIES.Add(NewEnemy);
                         }
                         enemies.Add((Enemy)mapcontainer[X, Y]);
+                        break;
+                        case Character.TileType.Gold:
+                        Gold one = new Gold(X, Y);
+                        MAPCONTAINER[X, Y] = one;
+                        ITEMS.Add((Gold)mapcontainer[X, Y]);
+                        break;
+                    case Character.TileType.Weapon:
+                        
+                        int u = random.Next(2);
+                        if (u == 1)
+                        {
+                            MeleeWeapon NewWeapon = new MeleeWeapon(X, Y, MeleeWeapon.Types.Dagger);
+                            MAPCONTAINER[X, Y] = NewWeapon;
+                            ITEMS.Add(NewWeapon);
+                            ITEMS.Add((MeleeWeapon)mapcontainer[X, Y]);
+                        }
+                        else if (u == 2)
+                        {
+                            MeleeWeapon NewWeapon = new MeleeWeapon(X, Y, MeleeWeapon.Types.Longsword);
+                            MAPCONTAINER[X, Y] = NewWeapon;
+                            ITEMS.Add(NewWeapon);
+                            ITEMS.Add((MeleeWeapon)mapcontainer[X, Y]);
+                        }
+                        else if (u == 3)
+                        {
+                            RangedWeapon NewWeapon = new RangedWeapon(X, Y, RangedWeapon.Types.Rifle);
+                            MAPCONTAINER[X, Y] = NewWeapon;
+                            ITEMS.Add(NewWeapon);
+                            ITEMS.Add((RangedWeapon)mapcontainer[X, Y]);
+                        }
+                        else
+                        {
+                            RangedWeapon NewWeapon = new RangedWeapon(X, Y, RangedWeapon.Types.Longbow);
+                            MAPCONTAINER[X, Y] = NewWeapon;
+                            ITEMS.Add(NewWeapon);
+                            ITEMS.Add((RangedWeapon)mapcontainer[X, Y]);
+                        }
+                        
                         break;
                 }
             }
@@ -836,7 +897,7 @@ namespace POE
 
             public GameEngine()
             {
-                map = new Map(10, 20, 10, 20, 5);
+                map = new Map(10, 20, 10, 20, 5, 4, 5);
             }
 
             public void MovePlayer(Character.Movement controls)
